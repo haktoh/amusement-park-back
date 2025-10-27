@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // 1. Le dice a Spring que esto es un controlador de API REST
-@RequestMapping("/api/v1/users") // 2. La URL base para todos los endpoints de este controlador
+@RequestMapping("/api/v1/register") // 2. La URL base para todos los endpoints de este controlador
 @RequiredArgsConstructor // 3. Lombok para la inyección de dependencias
 public class UserController {
 
