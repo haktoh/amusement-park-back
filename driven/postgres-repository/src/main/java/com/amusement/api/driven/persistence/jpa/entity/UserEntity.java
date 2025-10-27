@@ -38,7 +38,7 @@ public class UserEntity {
     @Column
     private Integer mobile;
 
-    @Column(length = 255)
+    @Column
     private String email;
 
     @Column(name = "email_verified_at")
@@ -47,7 +47,7 @@ public class UserEntity {
     @Column
     private String password;
 
-    @Column(name = "remember_token", length = 100)
+    @Column(name = "remember_token")
     private String rememberToken;
 
     @Column(name = "created_at")
