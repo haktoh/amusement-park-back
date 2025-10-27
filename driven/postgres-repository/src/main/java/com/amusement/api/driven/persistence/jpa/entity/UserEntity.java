@@ -1,30 +1,62 @@
 package com.amusement.api.driven.persistence.jpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Data
-@Entity // 1. Le dice a JPA que esto es una entidad
-@Table(name = "users") // 2. Le dice con qué tabla se mapea
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "users", schema = "public")
 public class UserEntity {
 
-    @Id // 3. Marca la clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 4. Le dice que es autoincremental (BIGSERIAL)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String dni;
+
+    @Column(name = "name")
     private String name;
+
+    @Column
     private String surname;
+
+    @Column
     private Integer age;
+
+    @Column
+    private Integer cp;
+
+    @Column
+    private Integer mobile;
+
+    @Column(length = 255)
     private String email;
 
-    // 5. Mapea el nombre de la columna de snake_case (BBDD) a camelCase (Java)
     @Column(name = "email_verified_at")
     private LocalDateTime emailVerifiedAt;
 
+    @Column
     private String password;
 
-    // Dejamos fuera 'remember_token', 'created_at', etc. por ahora,
-    // JPA puede gestionarlos automáticamente si quisiéramos.
+    @Column(name = "remember_token", length = 100)
+    private String rememberToken;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
 }

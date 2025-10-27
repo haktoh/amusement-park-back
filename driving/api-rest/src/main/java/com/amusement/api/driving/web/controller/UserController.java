@@ -30,16 +30,16 @@ public class UserController {
     @PostMapping // 4. Este método maneja peticiones POST a /api/v1/users
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
 
+
         // 5. El flujo de trabajo del controlador:
 
         // A. Traduce: DTO de Petición -> Modelo de Dominio
         User userDomain = userApiMapper.toDomain(request);
 
-        // (Aquí podríamos pasar el request.getPassword() al servicio si
-        //  nuestro caso de uso se encargara de encriptarlo)
+        String plainPassword = request.getPassword();
 
         // B. Delega: Llama al Caso de Uso (el "cerebro" en 'application')
-        User createdUser = createUserUseCase.createUser(userDomain);
+        User createdUser = createUserUseCase.createUser(userDomain, plainPassword );
 
         // C. Traduce: Modelo de Dominio -> DTO de Respuesta
         UserResponse response = userApiMapper.toResponse(createdUser);

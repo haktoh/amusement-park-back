@@ -17,6 +17,4 @@ public class User {
     private Integer age;
     private String email;
     private LocalDateTime emailVerifiedAt;
-    // No ponemos el password aquí a propósito,
-    // se maneja de forma diferente a los datos normales.
 }

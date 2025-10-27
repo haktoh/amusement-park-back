@@ -6,6 +6,6 @@ import java.util.Optional;
 // Este es el contrato que el Repositorio de Postgres implementará.
 // Define "qué" necesita la aplicación del exterior.
 public interface UserRepositoryPort {
-    User save(User user);
+    User save(User user, String hashedPassword);
     Optional<User> findByEmail(String email);
 }

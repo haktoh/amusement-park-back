@@ -20,10 +20,10 @@ public class UserPostgresRepositoryAdapter implements UserRepositoryPort {
 
 
     @Override // 4. Implementamos el método del puerto
-    public User save(User user) {
-        // Flujo del adaptador:
+    public User save(User user, String hashedPassword) {
         // 1. Traduce: Modelo de Dominio -> Entidad de BBDD
         UserEntity userEntity = mapper.toEntity(user);
+        userEntity.setPassword(hashedPassword);
 
         // 2. Persiste: Llama al repositorio de Spring
         UserEntity savedEntity = jpaRepository.save(userEntity);
@@ -34,11 +34,6 @@ public class UserPostgresRepositoryAdapter implements UserRepositoryPort {
 
     @Override // 5. Implementamos el otro método del puerto
     public Optional<User> findByEmail(String email) {
-        // Flujo:
-        // 1. Busca: Llama al repositorio de Spring
-        Optional<UserEntity> entityOptional = jpaRepository.findByEmail(email);
-
-        // 2. Traduce (si existe): Entidad -> Dominio
-        return entityOptional.map(mapper::toDomain);
+        return jpaRepository.findByEmail(email).map(mapper::toDomain);
     }
 }
