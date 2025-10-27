@@ -7,7 +7,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.7</version> <relativePath/> </parent>
     <groupId>com.amusement</groupId>
-    <artifactId>api</artifactId>
+    <artifactId>amusement-park-back</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
@@ -58,6 +58,17 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.amusement</groupId>
+                <artifactId>api-rest</artifactId>
+                <version>${project.version}</version>
+                <scope>runtime</scope> </dependency>
+            <dependency>
+                <groupId>com.amusement</groupId>
+                <artifactId>postgres-repository</artifactId>
+                <version>${project.version}</version>
+                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

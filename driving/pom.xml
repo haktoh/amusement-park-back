@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.amusement</groupId>
-        <artifactId>api</artifactId>
+        <artifactId>amusement-park-back</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -16,5 +16,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>api-rest</module>
     </modules>
+
 </project>
