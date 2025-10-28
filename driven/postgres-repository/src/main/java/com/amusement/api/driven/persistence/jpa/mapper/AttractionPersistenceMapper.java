@@ -14,4 +14,8 @@ public interface AttractionPersistenceMapper {
 
     // Convierte la Entidad de BBDD -> Modelo de Dominio
     List<Attraction> toDomain(List<AttractionEntity> attraction);
+
+    AttractionEntity toEntity(Attraction attraction);
+
+    Attraction toDomain(AttractionEntity attractionEntity);
 }

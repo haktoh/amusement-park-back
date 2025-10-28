@@ -8,4 +8,5 @@ import java.util.List;
 // Define "qué" necesita la aplicación del exterior.
 public interface AttractionsRepositoryPort {
     List<Attraction> findAll();
+    Attraction findById(Long id);
 }

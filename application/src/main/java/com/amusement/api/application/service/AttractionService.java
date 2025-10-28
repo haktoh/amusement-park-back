@@ -17,4 +17,10 @@ public class AttractionService implements GetAttractionsUseCase {
     public List<Attraction> getAttractions() {
         return attractionsRepositoryPort.findAll();
     }
+
+    @Override
+    public Attraction getAttractionById(Long id) {
+        return attractionsRepositoryPort.findById(id);
+
+    }
 }

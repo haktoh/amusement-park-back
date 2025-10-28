@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // 1. Le dice a Spring que esto es un controlador de API REST
-@RequestMapping("/api/v1/register") // 2. La URL base para todos los endpoints de este controlador
+@RequestMapping("/api/v1/users") // 2. La URL base para todos los endpoints de este controlador
 @RequiredArgsConstructor // 3. Lombok para la inyección de dependencias
 public class UserController {
-
-    // --- Inyectamos nuestros contratos (Puertos) ---
 
     // A. Inyectamos el PUERTO DE ENTRADA (Caso de Uso) del módulo 'application'
     private final CreateUserUseCase createUserUseCase;
@@ -27,12 +25,8 @@ public class UserController {
     // B. Inyectamos el "Traductor" que acabamos de crear
     private final UserApiMapper userApiMapper;
 
-    @PostMapping // 4. Este método maneja peticiones POST a /api/v1/users
+    @PostMapping("/register")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
-
-
-        // 5. El flujo de trabajo del controlador:
-
         // A. Traduce: DTO de Petición -> Modelo de Dominio
         User userDomain = userApiMapper.toDomain(request);
 

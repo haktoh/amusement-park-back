@@ -21,4 +21,11 @@ public class AttractionPostgresRepositoryAdapter implements AttractionsRepositor
         List<AttractionEntity> entities = jpaRepository.findAll();
         return mapper.toDomain(entities);
     }
+
+    @Override
+    public Attraction findById(Long id) {
+        AttractionEntity entity = jpaRepository.findById(id).orElseThrow(() -> new RuntimeException("Attraction not found"));
+        return mapper.toDomain(entity);
+
+    }
 }
