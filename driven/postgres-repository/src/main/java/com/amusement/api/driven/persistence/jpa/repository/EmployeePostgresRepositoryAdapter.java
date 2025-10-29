@@ -1,12 +1,8 @@
 package com.amusement.api.driven.persistence.jpa.repository;
 
-import com.amusement.api.application.port.driven.AttractionsRepositoryPort;
 import com.amusement.api.application.port.driven.EmployeeRepositoryPort;
-import com.amusement.api.domain.model.Attraction;
 import com.amusement.api.domain.model.Employee;
-import com.amusement.api.driven.persistence.jpa.entity.AttractionEntity;
 import com.amusement.api.driven.persistence.jpa.entity.EmployeeEntity;
-import com.amusement.api.driven.persistence.jpa.mapper.AttractionPersistenceMapper;
 import com.amusement.api.driven.persistence.jpa.mapper.EmployeePersistenceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -24,5 +20,11 @@ public class EmployeePostgresRepositoryAdapter implements EmployeeRepositoryPort
     public List<Employee> findAll() {
         List<EmployeeEntity> entities = jpaRepository.findAll();
         return mapper.toDomain(entities);
+    }
+
+    @Override
+    public Employee findById(Long id) {
+        EmployeeEntity entity = jpaRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
+        return mapper.toDomain(entity);
     }
 }

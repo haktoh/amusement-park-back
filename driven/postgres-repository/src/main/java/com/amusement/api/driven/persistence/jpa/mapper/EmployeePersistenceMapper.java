@@ -14,4 +14,8 @@ public interface EmployeePersistenceMapper {
 
     // Convierte la Entidad de BBDD -> Modelo de Dominio
     List<Employee> toDomain(List<EmployeeEntity> attraction);
+
+    Employee toDomain(EmployeeEntity entity);
+
+    EmployeeEntity toEntity(Employee domain);
 }

@@ -9,4 +9,5 @@ import java.util.List;
 // Define "qué" necesita la aplicación del exterior.
 public interface EmployeeRepositoryPort {
     List<Employee> findAll();
+    Employee findById(Long id);
 }

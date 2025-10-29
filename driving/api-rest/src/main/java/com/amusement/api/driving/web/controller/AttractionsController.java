@@ -2,14 +2,9 @@ package com.amusement.api.driving.web.controller;
 
 import com.amusement.api.application.port.driving.GetAttractionsUseCase;
 import com.amusement.api.domain.model.Attraction;
-import com.amusement.api.domain.model.User;
 import com.amusement.api.driving.web.dto.AttractionResponse;
-import com.amusement.api.driving.web.dto.CreateUserRequest;
-import com.amusement.api.driving.web.dto.UserResponse;
 import com.amusement.api.driving.web.mapper.AttractionApiMapper;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

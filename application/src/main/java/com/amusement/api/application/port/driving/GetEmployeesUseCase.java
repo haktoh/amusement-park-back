@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface GetEmployeesUseCase {
     List<Employee> getEmployees();
+    Employee getEmployeeById(Long id);
 }
