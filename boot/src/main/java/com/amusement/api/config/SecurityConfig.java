@@ -35,8 +35,8 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsAdapterService); // <-- Nuestro Verificador
-        authProvider.setPasswordEncoder(passwordEncoder()); // <-- Nuestro Hasheador
+        authProvider.setUserDetailsService(userDetailsAdapterService);
+        authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 
@@ -44,19 +44,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/users/register").permitAll() // Registro es público
-                        .requestMatchers("/api/v1/auth/login").permitAll()    // Login es público
-                        .anyRequest().authenticated() // Todo lo demás requiere un token
+                        .requestMatchers("/api/v1/users/register").permitAll()
+                        .requestMatchers("/api/v1/auth/login").permitAll()
+                        .anyRequest().authenticated()
                 )
-
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-
-                .authenticationProvider(authenticationProvider());
-
+                .authenticationProvider(authenticationProvider()); // <-- Lo conectamos aquí
 
         return http.build();
     }
