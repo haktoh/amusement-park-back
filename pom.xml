@@ -44,6 +44,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>com.amusement</groupId>
                 <artifactId>application</artifactId>
@@ -63,12 +64,11 @@
                 <groupId>com.amusement</groupId>
                 <artifactId>api-rest</artifactId>
                 <version>${project.version}</version>
-                <scope>runtime</scope> </dependency>
+            </dependency>
             <dependency>
                 <groupId>com.amusement</groupId>
                 <artifactId>postgres-repository</artifactId>
                 <version>${project.version}</version>
-                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
