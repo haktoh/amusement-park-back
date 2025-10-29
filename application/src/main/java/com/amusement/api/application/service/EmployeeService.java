@@ -17,4 +17,9 @@ public class EmployeeService implements GetEmployeesUseCase {
     public List<Employee> getEmployees() {
         return employeeRepositoryPort.findAll();
     }
+
+    @Override
+    public Employee getEmployeeById(Long id) {
+        return employeeRepositoryPort.findById(id);
+    }
 }
