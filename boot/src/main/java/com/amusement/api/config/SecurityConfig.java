@@ -4,6 +4,7 @@ import com.amusement.api.driven.persistence.jpa.security.UserDetailsAdapterServi
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod; // <-- IMPORTANTE AÑADIR ESTA LÍNEA
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -22,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final UserDetailsAdapterService userDetailsAdapterService;
-    private final JwtAuthenticationFilter jwtAuthFilter; // <-- 1. INYECTA EL FILTRO
+    private final JwtAuthenticationFilter jwtAuthFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -47,18 +48,21 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/users/register").permitAll()
-                        .requestMatchers("/api/v1/auth/login").permitAll()
+                        // Solo permite POST para registrarse
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/register").permitAll()
+                        // Solo permite POST para iniciar sesión
+                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
+
+                        // Permite GET para ver la lista de atracciones o una en concreto
+                        .requestMatchers(HttpMethod.GET, "/api/v1/attractions", "/api/v1/attractions/**").permitAll()
+
+                        // Cualquier otra petición SÍ necesita autenticación
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider())
-
-                // 2. AÑADE ESTA LÍNEA
-                // Le dice a Spring que ejecute NUESTRO filtro ANTES del filtro
-                // de usuario/contraseña estándar.
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
