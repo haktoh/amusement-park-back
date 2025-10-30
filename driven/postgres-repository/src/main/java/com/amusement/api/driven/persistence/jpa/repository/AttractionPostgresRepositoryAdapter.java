@@ -28,4 +28,8 @@ public class AttractionPostgresRepositoryAdapter implements AttractionsRepositor
         return mapper.toDomain(entity);
 
     }
+    @Override
+    public void deleteById(Long id) {
+        jpaRepository.deleteById(id);
+    }
 }

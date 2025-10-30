@@ -9,4 +9,5 @@ import java.util.List;
 public interface AttractionsRepositoryPort {
     List<Attraction> findAll();
     Attraction findById(Long id);
+    void deleteById(Long id);
 }

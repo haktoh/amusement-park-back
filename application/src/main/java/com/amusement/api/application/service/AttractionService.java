@@ -21,6 +21,9 @@ public class AttractionService implements GetAttractionsUseCase {
     @Override
     public Attraction getAttractionById(Long id) {
         return attractionsRepositoryPort.findById(id);
-
+    }
+    @Override
+    public void deleteAttractionById(Long id) {
+        attractionsRepositoryPort.deleteById(id);
     }
 }

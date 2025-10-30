@@ -30,4 +30,10 @@ public class AttractionsController {
         var response = attractionApiMapper.toResponse(attraction);
         return ResponseEntity.ok().body(response);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAttractionById(@PathVariable Long id) {
+        getAttractionsUseCase.deleteAttractionById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

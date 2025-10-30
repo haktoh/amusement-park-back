@@ -7,4 +7,5 @@ import java.util.List;
 public interface GetAttractionsUseCase {
     List<Attraction> getAttractions();
     Attraction getAttractionById(Long id);
+    void deleteAttractionById(Long id);
 }
